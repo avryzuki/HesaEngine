@@ -2,7 +2,6 @@
 using HesaEngine.SDK;
 using HesaEngine.SDK.Args;
 using HesaEngine.SDK.GameObjects;
-using SharpDX;
 
 namespace Xerath
 {
