@@ -1,4 +1,4 @@
-using HesaEngine.SDK;
+﻿using HesaEngine.SDK;
 using HesaEngine.SDK.Enums;
 using HesaEngine.SDK.GameObjects;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Xerath
 
             this.menu = menu;
             menuID = spellSlot.ToString() + "hc";
-            menu.DropDown(menuID, "HitChance Option", new string[] { "Low", "Medium", "High", "Very High" }, 2);
+            menu.DropDown(menuID, "HitChance Option", new string[] { "Low", "Medium", "High", "Very High" }, 1);
         }
 
         public void SetValues(float delay, float speed, float width, int minRange, int maxRange, string buffName, SkillshotType type)
