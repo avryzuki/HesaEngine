@@ -16,12 +16,12 @@ namespace Xerath
 
         private static void OnAfterAttack(AttackableUnit sender, AttackableUnit target)
         {
-            if (sender == myHero) ShouldCast = true;
+            if (sender.IsMe) ShouldCast = true;
         }
 
         private static void OnAnimation(Obj_AI_Base sender, GameObjectPlayAnimationEventArgs name)
         {
-            if (sender == myHero)
+            if (sender.IsMe)
             {
                 string animation = name.Animation;
                 switch (animation)
@@ -115,10 +115,10 @@ namespace Xerath
 
         private static Dictionary<string, bool> SpellData = new Dictionary<string, bool>();
 
-        private static Action<Obj_AI_Base, GameObjectProcessSpellCastEventArgs> callback;
+        private static event Action<Obj_AI_Base, GameObjectProcessSpellCastEventArgs> callback;
     }
     
-    internal class AntiChannel
+    internal static class AntiChannel
     {
         public static void Add(Menu menu, Action<Obj_AI_Base, GameObjectProcessSpellCastEventArgs> cb)
         {
@@ -180,7 +180,7 @@ namespace Xerath
 
         private static Dictionary<string, bool> SpellData = new Dictionary<string,bool>();
 
-        private static Action<Obj_AI_Base, GameObjectProcessSpellCastEventArgs> callback;
+        private static event Action<Obj_AI_Base, GameObjectProcessSpellCastEventArgs> callback;
     }
 
     internal class AntiSpellObject

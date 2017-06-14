@@ -1,5 +1,4 @@
 ﻿using System;
-using SharpDX;
 using HesaEngine.SDK;
 using HesaEngine.SDK.GameObjects;
 using System.Collections.Generic;

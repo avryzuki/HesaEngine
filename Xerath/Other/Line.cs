@@ -19,9 +19,9 @@ namespace Xerath
             return Math.Abs(A * point.X + B * point.Y + C) < float.Epsilon;
         }
 
-        public bool IsOnLine(Vector2 point, float width, float boundingRadius = 0)
+        public bool IsOnLine(Vector2 point, float halfWidth, float boundingRadius = 0)
         {
-            return DistanceTo(point) <= boundingRadius + width * 0.5f;
+            return DistanceTo(point) <= boundingRadius + halfWidth;
         }
 
         public float DistanceTo(Vector2 point)
@@ -68,9 +68,9 @@ namespace Xerath
             return false;
         }
 
-        public bool IsOnLine(Vector2 point, float width, float boundingRadius = 0)
+        public bool IsOnLine(Vector2 point, float halfWidth, float boundingRadius = 0)
         {
-            return Contains(line.PointProjectOf(point), true) && line.IsOnLine(point, width, boundingRadius);
+            return Contains(line.PointProjectOf(point), true) && line.IsOnLine(point, halfWidth, boundingRadius);
         }
 
         public float Length()
