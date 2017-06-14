@@ -1,4 +1,4 @@
-using HesaEngine.SDK;
+﻿using HesaEngine.SDK;
 
 namespace Xerath
 {

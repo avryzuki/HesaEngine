@@ -26,7 +26,7 @@ namespace Xerath
 
             if (W.Ready && myHero.ManaPercent >= myMenu.Get<MenuSlider>("lcMPW").CurrentValue && myMenu.Get<MenuCheckbox>("lcW").Checked)
             {
-                var pred = GetFarmPosition(myHero.Position, Minions.FindAll((x) => x.Distance3D(myHero) <= W.Data.Range), W.Data.Width * 0.5f);
+                var pred = GetFarmPosition(myHero.Position, Minions.FindAll((x) => x.Distance3D(myHero) <= W.Data.Range), W.Data.Width);
                 if (pred.Hits >= myMenu.Get<MenuSlider>("lcHitW").CurrentValue)
                 {
                     W.Data.Cast(pred.Position);
