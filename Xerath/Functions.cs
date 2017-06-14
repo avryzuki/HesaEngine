@@ -24,12 +24,16 @@ namespace Xerath
         static AIHeroClient GetRTarget(Vector3 Position, float range)
         {
             AIHeroClient RTarget = null;
+            float ratio = 0;
             foreach (var enemy in Enemies)
             {
                 if (enemy.IsValidTarget(R.Data.Range) && enemy.Distance(Position) <= range)
                 {
-                    if (RTarget == null || (_TargetSelector.GetRealPriority(_TargetSelector.GetPriority(enemy)) * R.Data.GetDamage(enemy) / enemy.APHealth() > _TargetSelector.GetRealPriority(_TargetSelector.GetPriority(RTarget)) * R.Data.GetDamage(RTarget) / RTarget.APHealth()))
+                    if (RTarget == null || (_TargetSelector.GetRealPriority(_TargetSelector.GetPriority(enemy)) * R.Data.GetDamage(enemy) / enemy.APHealth() > ratio))
+                    {
                         RTarget = enemy;
+                        ratio = _TargetSelector.GetRealPriority(_TargetSelector.GetPriority(enemy)) * R.Data.GetDamage(enemy) / enemy.APHealth();
+                    }
                 }
             }
             return RTarget;
@@ -75,7 +79,7 @@ namespace Xerath
             }
         }
 
-        static MinionFarm GetLineFarmPosition(Vector3 Pos, List<Obj_AI_Minion> Minions, float width)
+        static MinionFarm GetLineFarmPosition(Vector3 Pos, List<Obj_AI_Minion> Minions, float halfWidth)
         {
             Vector3 Position = new Vector3();
             int hits = 0;
@@ -85,7 +89,7 @@ namespace Xerath
                 int tmp = 0;
                 foreach (var enemy2 in Minions)
                 {
-                    if (line.IsOnLine(GetVec2(enemy2.Position), width, enemy2.BoundingRadius)) ++tmp;
+                    if (line.IsOnLine(GetVec2(enemy2.Position), halfWidth, enemy2.BoundingRadius)) ++tmp;
                 }
                 if (tmp > hits)
                 {
@@ -96,7 +100,7 @@ namespace Xerath
             return new MinionFarm(Position, hits);
         }
 
-        static MinionFarm GetFarmPosition(Vector3 Pos, List<Obj_AI_Minion> Minions, float radius)
+        static MinionFarm GetFarmPosition(Vector3 Pos, List<Obj_AI_Minion> Minions, float halfWidth)
         {
             Vector3 Position = new Vector3();
             int hits = 0;
@@ -105,7 +109,7 @@ namespace Xerath
                 int tmp = 0;
                 foreach (var enemy2 in Minions)
                 {
-                    if ((enemy2.Position - enemy.Position).Length() < radius) ++tmp;
+                    if ((enemy2.Position - enemy.Position).Length() < halfWidth) ++tmp;
                 }
                 if (tmp > hits)
                 {

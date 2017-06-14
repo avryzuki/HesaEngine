@@ -33,7 +33,7 @@ namespace Xerath
             tmp.Slider("lcHitW", "Use W if hit minions >=", 1, 10, 3);
 
             AddSpells(myMenu.AddSubMenu("JungleClear Mode"), "jc", new string[] { "Q", "W", "E" }, new bool[] { true, true, false }, new bool[] { true, true, true }, 10);
-            AddSpells(myMenu.AddSubMenu("KillSteal Mode"), "ks", new string[] { "Q", "W", "E", "Ignite" }, new bool[] { true, true, true, true }, new bool[] { true, true, true, false }, 20);
+            AddSpells(myMenu.AddSubMenu("KillSteal Mode"), "ks", new string[] { "Q", "W", "E", "Ignite" }, new bool[] { true, true, true, true }, new bool[] { true, true, true, false }, 10);
 
             var RMenu = myMenu.AddSubMenu("Ultimate Settings");
             RMenu.DropDown("RMode", "Choose Your Mode", new string[] { "Press Key", "Target In MouseRange", "Auto Cast" });

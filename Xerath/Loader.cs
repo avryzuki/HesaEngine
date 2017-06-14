@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using HesaEngine.SDK;
 
 namespace Xerath
@@ -12,7 +12,7 @@ namespace Xerath
 
         public string Version
         {
-            get { return "1.0.0"; }
+            get { return "1.0.1"; }
         }
 
         public string Author
@@ -30,7 +30,7 @@ namespace Xerath
             if (ObjectManager.Me.ChampionName == "Xerath")
             {
                 MyScript.LoadData();
-                PrintChat("Successfully Loaded Version 0.0.1");
+                PrintChat("Successfully Loaded Version 1.0.1");
             }
         }
 

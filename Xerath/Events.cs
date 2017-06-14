@@ -65,7 +65,7 @@ namespace Xerath
 
         static void OnBuffGained(Obj_AI_Base unit, Obj_AI_BaseBuffGainedEventArgs buff)
         {
-            if (unit == myHero)
+            if (unit.IsMe)
             {
                 switch (buff.Buff.DisplayName)
                 {
@@ -88,7 +88,7 @@ namespace Xerath
 
         static void OnBuffLost(Obj_AI_Base unit, Obj_AI_BaseBuffLostEventArgs buff)
         {
-            if (unit == myHero)
+            if (unit.IsMe)
             {
                 switch (buff.Buff.DisplayName)
                 {
@@ -111,7 +111,7 @@ namespace Xerath
 
         static void OnProcessSpellCast(Obj_AI_Base unit, GameObjectProcessSpellCastEventArgs spell)
         {
-            if (unit == myHero && spell.SData.Name == "XerathLocusPulse")
+            if (unit.IsMe && spell.SData.Name == "XerathLocusPulse")
             {
                 if (--RData.Count > 0)
                 {
