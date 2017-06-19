@@ -5,7 +5,7 @@ using HesaEngine.SDK.Enums;
 using HesaEngine.SDK.GameObjects;
 using System.Collections.Generic;
 
-namespace Xerath
+namespace DarkXerath
 {
     internal partial class MyScript
     {
@@ -32,16 +32,16 @@ namespace Xerath
             CreateMenu(out q, out w, out e, out r);
 
             Q = new SpellManager(q, SpellSlot.Q, TargetSelector.DamageType.Magical);
-            Q.SetValues(0.7f, float.MaxValue, 90f, 750, 1500, "XerathArcanopulseChargeUp", SkillshotType.SkillshotLine);
+            Q.SetValues(0.4f, float.MaxValue, 90f, 750, 1500, "XerathArcanopulseChargeUp", SkillshotType.SkillshotLine);
 
             W = new SpellManager(w, SpellSlot.W, TargetSelector.DamageType.Magical);
-            W.SetValues(0.8f, float.MaxValue, 250f, 1100f, SkillshotType.SkillshotCircle);
+            W.SetValues(0.6f, float.MaxValue, 250f, 1100f, SkillshotType.SkillshotCircle);
             
             E = new SpellManager(e, SpellSlot.E, TargetSelector.DamageType.Magical, SpellManager.CollisionTable.Normal);
-            E.SetValues(0.3f, 1400f, 70f, 1050f, SkillshotType.SkillshotLine);
+            E.SetValues(0.25f, 850f, 70f, 1050f, SkillshotType.SkillshotLine);
 
             R = new SpellManager(r, SpellSlot.R, TargetSelector.DamageType.Magical);
-            R.SetValues(0.7f, float.MaxValue, 200f, 0f, SkillshotType.SkillshotCircle);
+            R.SetValues(0.5f, float.MaxValue, 200f, 0f, SkillshotType.SkillshotCircle);
 
             TSQ = new _TargetSelector(q, TargetSelector.DamageType.Magical);
             TSW = new _TargetSelector(w, TargetSelector.DamageType.Magical);

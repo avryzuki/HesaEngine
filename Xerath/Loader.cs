@@ -1,7 +1,7 @@
 ﻿using System;
 using HesaEngine.SDK;
 
-namespace Xerath
+namespace DarkXerath
 {
     public class MyLoader : IScript
     {
@@ -36,9 +36,9 @@ namespace Xerath
 
         internal static string ScriptVersion
         {
-            get { return "1.0.2"; }
+            get { return "1.0.0"; }
         }
 
-        internal static void PrintChat(string text) { Chat.Print(String.Format("<font color=\"#4169E1\"><b>[Xerath]:</b></font><font color=\"#FFFFFF\"> {0}</font>", text)); }
+        internal static void PrintChat(string text) { Chat.Print(String.Format("<font color=\"#4169E1\"><b>[DarkXerath]:</b></font><font color=\"#FFFFFF\"> {0}</font>", text)); }
     }
 }

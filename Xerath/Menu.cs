@@ -2,7 +2,7 @@
 using HesaEngine.SDK;
 using SharpDX.DirectInput;
 
-namespace Xerath
+namespace DarkXerath
 {
     internal partial class MyScript
     {

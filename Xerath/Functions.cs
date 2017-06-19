@@ -4,7 +4,7 @@ using HesaEngine.SDK;
 using HesaEngine.SDK.GameObjects;
 using System.Collections.Generic;
 
-namespace Xerath
+namespace DarkXerath
 {
     internal partial class MyScript
     {
@@ -45,7 +45,7 @@ namespace Xerath
             if (Game.GameTimeTickCount - RData.Delay[index] > myMenu.Get<MenuSlider>("R" + index.ToString()).CurrentValue && unit != null)
             {
                 var predPos = DarkPrediction.CirclerPrediction(R.Data, unit);
-                if (predPos != DarkPrediction.empt)
+                if (predPos != DarkPrediction.empt && predPos.Distance(myHero) <= R.Data.Range)
                 {
                     R.Data.Cast(predPos);
                 }
@@ -76,7 +76,7 @@ namespace Xerath
             if (unit != null)
             {
                 var predPos = DarkPrediction.CirclerPrediction(W.Data, (AIHeroClient)unit);
-                if (predPos != DarkPrediction.empt)
+                if (predPos != DarkPrediction.empt && predPos.Distance(myHero) <= W.Data.Range)
                 {
                     W.Data.Cast(predPos);
                 }
@@ -88,7 +88,7 @@ namespace Xerath
             if (unit != null)
             {
                 var predPos = DarkPrediction.LinearPrediction(myHero.Position, E.Data, (AIHeroClient)unit);
-                if (predPos != DarkPrediction.empt && !DarkPrediction.CollisionChecker(predPos, myHero.Position, E.Data))
+                if (predPos != DarkPrediction.empt && !DarkPrediction.CollisionChecker(predPos, myHero.Position, E.Data) && predPos.Distance(myHero) <= E.Data.Range)
                 {
                     E.Data.Cast(predPos);
                 }

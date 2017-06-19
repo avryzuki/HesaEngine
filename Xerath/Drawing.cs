@@ -1,7 +1,7 @@
 ﻿using SharpDX;
 using HesaEngine.SDK;
 
-namespace Xerath
+namespace DarkXerath
 {
     internal partial class MyScript
     {
