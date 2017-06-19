@@ -17,7 +17,7 @@ namespace DarkXerath
                 }
             };
 
-            myMenu = Menu.AddMenu("Xerath");
+            myMenu = Menu.AddMenu("DarkXerath");
 
             var tmp = myMenu.AddSubMenu("Combo Mode");
             AddSpells(tmp, "cb", new string[] { "Q", "W", "E" }, new bool[] { true, true, true }, new bool[] { true, true, true }, 3);

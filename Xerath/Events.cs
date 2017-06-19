@@ -125,13 +125,13 @@ namespace DarkXerath
         static void OnAntiGapcloserActive(AIHeroClient unit, GameObjectProcessSpellCastEventArgs spell)
         {
             if (E.Ready && AntiGC.MenuCheck(AntiGCMenu, spell) && unit.IsValidTarget(E.Data.Range))
-                E.Cast(unit, false);
+                CastE(unit);
         }
 
         static void OnAntiChannelActive(AIHeroClient unit, GameObjectProcessSpellCastEventArgs spell)
         {
-            if (E.Ready && AntiGC.MenuCheck(InterrupterMenu, spell)  && unit.IsValidTarget(E.Data.Range))
-                E.Cast(unit, false);
+            if (E.Ready && AntiGC.MenuCheck(InterrupterMenu, spell) && unit.IsValidTarget(E.Data.Range))
+                CastE(unit);
         }
     }
 }

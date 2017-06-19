@@ -7,7 +7,7 @@ namespace DarkXerath
     {
         public string Name
         {
-            get { return "Xerath"; }
+            get { return "DarkXerath"; }
         }
 
         public string Version
