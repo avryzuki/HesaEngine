@@ -1,7 +1,7 @@
 ﻿using HesaEngine.SDK;
 using HesaEngine.SDK.Enums;
 
-namespace Xerath
+namespace DarkXerath
 {
     internal partial class MyScript
     {
