@@ -7,7 +7,7 @@ namespace DarkXerath
 {
     internal class _TargetSelector
     {
-        public _TargetSelector(Menu subMenu, TargetSelector.DamageType damageType, Mode mode = Mode.AutoPriority, bool includeShields = true)
+        public _TargetSelector(Menu subMenu, TargetSelector.DamageType damageType, Mode mode, bool includeShields = true)
         {
             menu = subMenu.AddSubMenu("Target Selector");
             menu.DropDown("TSMode", "Targetting Mode", new string[] {"Auto Priority", "Lowest HP", "Most AD", "Most AP", "Closest", "Closest Mouse"}, (int) mode);
