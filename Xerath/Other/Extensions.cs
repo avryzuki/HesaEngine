@@ -4,7 +4,7 @@ using HesaEngine.SDK;
 using SharpDX.DirectInput;
 using HesaEngine.SDK.GameObjects;
 
-namespace Xerath
+namespace DarkXerath
 {
     internal static class _Extensions
     {

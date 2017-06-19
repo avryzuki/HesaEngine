@@ -4,7 +4,7 @@ using HesaEngine.SDK.Args;
 using HesaEngine.SDK.GameObjects;
 using System.Collections.Generic;
 
-namespace Xerath
+namespace DarkXerath
 {
     internal static class CastCheck
     {

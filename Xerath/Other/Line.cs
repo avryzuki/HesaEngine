@@ -1,7 +1,7 @@
 ﻿using System;
 using SharpDX;
 
-namespace Xerath
+namespace DarkXerath
 {
     internal class Line
     {

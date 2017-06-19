@@ -3,7 +3,7 @@ using HesaEngine.SDK;
 using HesaEngine.SDK.GameObjects;
 using System.Collections.Generic;
 
-namespace Xerath
+namespace DarkXerath
 {
     internal class _TargetSelector
     {

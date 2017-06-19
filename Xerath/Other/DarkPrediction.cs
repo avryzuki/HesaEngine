@@ -5,7 +5,7 @@ using HesaEngine.SDK;
 using HesaEngine.SDK.GameObjects;
 using System.Collections.Generic;
 
-namespace Xerath
+namespace DarkXerath
 {
     public static class DarkPrediction
     {
