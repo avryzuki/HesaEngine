@@ -18,11 +18,9 @@ namespace DarkXerath
                             unit = enemy;
                     }
                 }
-                if (unit != null)
-                {
-                    W.Cast(unit, true);
-                    return;
-                }
+                
+                CastW(unit);
+                return;
             }
 
             if (E.Ready && myHero.ManaPercent >= myMenu.Get<MenuSlider>("fleeMPE").CurrentValue && myMenu.Get<MenuCheckbox>("fleeE").Checked)
@@ -36,7 +34,7 @@ namespace DarkXerath
                             unit = enemy;
                     }
                 }
-                E.Cast(unit, false);
+                CastE(unit);
             }
         }
     }

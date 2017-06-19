@@ -9,7 +9,7 @@ namespace DarkXerath
         {
             if (Q.Ready && (QData.Active || myHero.ManaPercent >= myMenu.Get<MenuSlider>("lcMPQ").CurrentValue) && myMenu.Get<MenuCheckbox>("lcQ").Checked)
             {
-                var pred = GetLineFarmPosition(myHero.Position, Minions, Q.Data.Width);
+                var pred = GetLineFarmPosition(myHero.Position, Minions, 90f);
                 if (pred.Hits >= myMenu.Get<MenuSlider>("lcHitQ").CurrentValue)
                 {
                     if (!QData.Active)
@@ -26,7 +26,7 @@ namespace DarkXerath
 
             if (W.Ready && myHero.ManaPercent >= myMenu.Get<MenuSlider>("lcMPW").CurrentValue && myMenu.Get<MenuCheckbox>("lcW").Checked)
             {
-                var pred = GetFarmPosition(myHero.Position, Minions.FindAll((x) => x.Distance3D(myHero) <= W.Data.Range), W.Data.Width);
+                var pred = GetFarmPosition(myHero.Position, Minions.FindAll((x) => x.Distance3D(myHero) <= W.Data.Range), 250f);
                 if (pred.Hits >= myMenu.Get<MenuSlider>("lcHitW").CurrentValue)
                 {
                     W.Data.Cast(pred.Position);
