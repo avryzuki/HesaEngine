@@ -13,8 +13,8 @@ namespace Xerath
             colTable = col;
 
             this.menu = menu;
-            menuID = spellSlot.ToString() + "hc";
-            menu.DropDown(menuID, "HitChance Option", new string[] { "Low", "Medium", "High", "Very High" }, 1);
+            //menuID = spellSlot.ToString() + "hc";
+            //menu.DropDown(menuID, "HitChance Option", new string[] { "Low", "Medium", "High", "Very High" }, 1);
         }
 
         public void SetValues(float delay, float speed, float width, int minRange, int maxRange, string buffName, SkillshotType type)

@@ -55,7 +55,7 @@ namespace Xerath
 
     internal static class AntiGC
     {
-        public static void Add(Menu menu, Action<Obj_AI_Base, GameObjectProcessSpellCastEventArgs> cb)
+        public static void AddMenu(Menu menu)
         {
             Core.DelayAction(() =>
             {
@@ -79,8 +79,6 @@ namespace Xerath
                 if (!exist) menu.AddSeparator("- No Spell Avaliable -");
             }, 10);
 
-            callback += cb;
-
             if (!load)
             {
                 load = true;
@@ -89,7 +87,7 @@ namespace Xerath
                 {
                     if (unit.IsEnemy && SpellData.ContainsKey(spell.SData.Name.ToLower()))
                     {
-                        AntiSpellObject.GapcloseSpells.AddLast(new AntiSpellObject(unit, spell));
+                        AntiSpellObject.GapcloseSpells.AddLast(new AntiSpellObject((AIHeroClient)unit, spell));
                     }
                 };
 
@@ -104,23 +102,28 @@ namespace Xerath
                             AntiSpellObject.GapcloseSpells.Remove(node);
                             break;
                         }
-                        callback(node.Value.unit, node.Value.spell);
+                        OnSpellActive(node.Value.unit, node.Value.spell);
                         if (i < AntiSpellObject.GapcloseSpells.Count) node = node.Next;
                     }
                 };
             }
         }
 
+        public static bool MenuCheck(Menu menu, GameObjectProcessSpellCastEventArgs spell)
+        {
+            return menu.Get<MenuCheckbox>(spell.SData.Name.ToLower()).Checked;
+        }
+
         private static bool load = false;
 
         private static Dictionary<string, bool> SpellData = new Dictionary<string, bool>();
 
-        private static event Action<Obj_AI_Base, GameObjectProcessSpellCastEventArgs> callback;
+        public static event Action<AIHeroClient, GameObjectProcessSpellCastEventArgs> OnSpellActive;
     }
     
     internal static class AntiChannel
     {
-        public static void Add(Menu menu, Action<Obj_AI_Base, GameObjectProcessSpellCastEventArgs> cb)
+        public static void AddMenu(Menu menu)
         {
             Core.DelayAction(() =>
             {
@@ -144,8 +147,6 @@ namespace Xerath
                 if (!exist) menu.AddSeparator("- No Spell Avaliable -");
             }, 10);
 
-            callback += cb;
-
             if (!load)
             {
                 load = true;
@@ -154,7 +155,7 @@ namespace Xerath
                 {
                     if (unit.IsEnemy && SpellData.ContainsKey(spell.SData.Name))
                     {
-                        AntiSpellObject.ChannelSpells.AddLast(new AntiSpellObject(unit, spell));
+                        AntiSpellObject.ChannelSpells.AddLast(new AntiSpellObject((AIHeroClient)unit, spell));
                     }
                 };
 
@@ -169,18 +170,23 @@ namespace Xerath
                             AntiSpellObject.ChannelSpells.Remove(node);
                             break;
                         }
-                        callback(node.Value.unit, node.Value.spell);
+                        OnSpellActive(node.Value.unit, node.Value.spell);
                         if (i < AntiSpellObject.ChannelSpells.Count) node = node.Next;
                     }
                 };
             }
         }
 
+        public static bool MenuCheck(Menu menu, GameObjectProcessSpellCastEventArgs spell)
+        {
+            return menu.Get<MenuCheckbox>(spell.SData.Name).Checked;
+        }
+
         private static bool load = false;
 
         private static Dictionary<string, bool> SpellData = new Dictionary<string,bool>();
 
-        private static event Action<Obj_AI_Base, GameObjectProcessSpellCastEventArgs> callback;
+        public static event Action<AIHeroClient, GameObjectProcessSpellCastEventArgs> OnSpellActive;
     }
 
     internal class AntiSpellObject
@@ -188,7 +194,7 @@ namespace Xerath
         public static LinkedList<AntiSpellObject> ChannelSpells = new LinkedList<AntiSpellObject>();
         public static LinkedList<AntiSpellObject> GapcloseSpells = new LinkedList<AntiSpellObject>();
 
-        public AntiSpellObject(Obj_AI_Base unit, GameObjectProcessSpellCastEventArgs spell)
+        public AntiSpellObject(AIHeroClient unit, GameObjectProcessSpellCastEventArgs spell)
         {
             this.unit = unit;
             this.spell = spell;
@@ -196,7 +202,7 @@ namespace Xerath
         }
 
         public float end;
-        public Obj_AI_Base unit;
+        public AIHeroClient unit;
         public GameObjectProcessSpellCastEventArgs spell;
     }
 }
