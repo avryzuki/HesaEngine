@@ -13,6 +13,8 @@ namespace Xerath
             Obj_AI_Base.OnBuffGained += OnBuffGained;
             Obj_AI_Base.OnBuffLost += OnBuffLost;
             Obj_AI_Base.OnProcessSpellCast += OnProcessSpellCast;
+            AntiGC.OnSpellActive += OnAntiGapcloserActive;
+            AntiChannel.OnSpellActive += OnAntiChannelActive;
         }
 
         static void OnTick()
@@ -118,6 +120,18 @@ namespace Xerath
                     RData.Delay[2 + R.Data.Level - RData.Count] = Game.GameTimeTickCount + 600;
                 }
             }
+        }
+
+        static void OnAntiGapcloserActive(AIHeroClient unit, GameObjectProcessSpellCastEventArgs spell)
+        {
+            if (E.Ready && AntiGC.MenuCheck(AntiGCMenu, spell) && unit.IsValidTarget(E.Data.Range))
+                E.Cast(unit, false);
+        }
+
+        static void OnAntiChannelActive(AIHeroClient unit, GameObjectProcessSpellCastEventArgs spell)
+        {
+            if (E.Ready && AntiGC.MenuCheck(InterrupterMenu, spell)  && unit.IsValidTarget(E.Data.Range))
+                E.Cast(unit, false);
         }
     }
 }

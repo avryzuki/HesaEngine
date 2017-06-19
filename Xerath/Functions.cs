@@ -12,7 +12,7 @@ namespace Xerath
         {
             if (QData.Active)
             {
-                Q.Data.Range = Q.Data.ChargedMinRange + 500f * Math.Min(1.5f, (Game.Time - QData.LastCastTime));
+                Q.Data.Range = Math.Min(Q.Data.ChargedMaxRange, 700f + 500f * (Game.Time - QData.LastCastTime));
             }
 
             if (R.Ready)
@@ -42,9 +42,13 @@ namespace Xerath
         static void CastR(AIHeroClient unit)
         {
             int index = 2 + R.Data.Level - RData.Count;
-            if (Game.GameTimeTickCount - RData.Delay[index] > myMenu.Get<MenuSlider>("R" + index.ToString()).CurrentValue)
+            if (Game.GameTimeTickCount - RData.Delay[index] > myMenu.Get<MenuSlider>("R" + index.ToString()).CurrentValue && unit != null)
             {
-                R.Cast(unit, true);
+                var predPos = DarkPrediction.CirclerPrediction(R.Data, unit);
+                if (predPos != DarkPrediction.empt)
+                {
+                    R.Data.Cast(predPos);
+                }
             }
         }
 
@@ -58,7 +62,11 @@ namespace Xerath
                 }
                 else
                 {
-                    Q.Cast(unit, Q.Data.Range, true);
+                    var predPos = DarkPrediction.CirclerPrediction(Q.Data, (AIHeroClient)unit);
+                    if (predPos != DarkPrediction.empt && myHero.Distance(predPos) <= Q.Data.Range)
+                    {
+                        myHero.Spellbook.UpdateChargedSpell(Q.Data.Slot, predPos, true);
+                    }
                 }
             }
         }
@@ -67,7 +75,11 @@ namespace Xerath
         {
             if (unit != null)
             {
-                W.Cast(unit, true);
+                var predPos = DarkPrediction.CirclerPrediction(W.Data, (AIHeroClient)unit);
+                if (predPos != DarkPrediction.empt)
+                {
+                    W.Data.Cast(predPos);
+                }
             }
         }
 
@@ -75,7 +87,11 @@ namespace Xerath
         {
             if (unit != null)
             {
-                E.Cast(unit, false);
+                var predPos = DarkPrediction.LinearPrediction(myHero.Position, E.Data, (AIHeroClient)unit);
+                if (predPos != DarkPrediction.empt && !DarkPrediction.CollisionChecker(predPos, myHero.Position, E.Data))
+                {
+                    E.Data.Cast(predPos);
+                }
             }
         }
 

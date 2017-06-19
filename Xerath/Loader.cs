@@ -12,7 +12,7 @@ namespace Xerath
 
         public string Version
         {
-            get { return "1.0.1"; }
+            get { return ScriptVersion; }
         }
 
         public string Author
@@ -30,8 +30,13 @@ namespace Xerath
             if (ObjectManager.Me.ChampionName == "Xerath")
             {
                 MyScript.LoadData();
-                PrintChat("Successfully Loaded Version 1.0.1");
+                PrintChat("Successfully Loaded Version " + ScriptVersion);
             }
+        }
+
+        internal static string ScriptVersion
+        {
+            get { return "1.0.2"; }
         }
 
         internal static void PrintChat(string text) { Chat.Print(String.Format("<font color=\"#4169E1\"><b>[Xerath]:</b></font><font color=\"#FFFFFF\"> {0}</font>", text)); }

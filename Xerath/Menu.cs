@@ -50,16 +50,10 @@ namespace Xerath
             tmp.AddSeparator("Change key in Orbwalker menu");
 
             AntiGCMenu = myMenu.AddSubMenu("Anti-GapCloser");
-            AntiGC.Add(AntiGCMenu, (x, y) =>
-            {
-                if (E.Ready && AntiGCMenu.Get<MenuCheckbox>(y.SData.Name.ToLower()).Checked && x.IsValidTarget(E.Data.Range)) E.Cast(x, false);
-            });
+            AntiGC.AddMenu(AntiGCMenu);
 
             InterrupterMenu = myMenu.AddSubMenu("ChannelSpell Interrupter");
-            AntiChannel.Add(InterrupterMenu, (x, y) =>
-            {
-                if (E.Ready && InterrupterMenu.Get<MenuCheckbox>(y.SData.Name).Checked && x.IsValidTarget(E.Data.Range)) E.Cast(x, false);
-            });
+            AntiChannel.AddMenu(InterrupterMenu);
 
             q = myMenu.AddSubMenu("Q Settings");
             w = myMenu.AddSubMenu("W Settings");

@@ -26,6 +26,11 @@ namespace Xerath
 
         static _TargetSelector TSQ, TSW, TSE;
 
+        static Vector3 nonPosition
+        {
+            get { return new Vector3(0f, 0f, 0f); }
+        }
+
         internal static void LoadData()
         {
             Menu q, w, e, r;
