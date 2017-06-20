@@ -1,9 +1,0 @@
-F:\CSharp Projects\DarkXerath\DarkXerath\bin\Debug\DarkXerath.dll
-F:\CSharp Projects\DarkXerath\DarkXerath\bin\Debug\DarkXerath.pdb
-F:\CSharp Projects\DarkXerath\DarkXerath\obj\Debug\DarkXerath.dll
-F:\CSharp Projects\DarkXerath\DarkXerath\obj\Debug\DarkXerath.pdb
-C:\Users\Ates\Desktop\DarkXerath\DarkXerath\bin\Debug\DarkXerath.dll
-C:\Users\Ates\Desktop\DarkXerath\DarkXerath\bin\Debug\DarkXerath.pdb
-C:\Users\Ates\Desktop\DarkXerath\DarkXerath\obj\Debug\DarkXerath.csprojResolveAssemblyReference.cache
-C:\Users\Ates\Desktop\DarkXerath\DarkXerath\obj\Debug\DarkXerath.dll
-C:\Users\Ates\Desktop\DarkXerath\DarkXerath\obj\Debug\DarkXerath.pdb
