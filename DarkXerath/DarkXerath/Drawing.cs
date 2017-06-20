@@ -8,12 +8,12 @@ namespace DarkXerath
         static void Drawings()
         {
             Vector3 Position = myHero.Position;
-            var enemyq = TargetSelector.GetTarget(1500, TargetSelector.DamageType.Magical);
+            /*var enemyq = TargetSelector.GetTarget(1500, TargetSelector.DamageType.Magical);
 
             if (enemyq != null)
             {
                 Drawing.DrawCircle(DarkPrediction.CirclerPrediction(Q.Data, enemyq, 1), 50, Color.Pink);
-            }
+            }*/
 
             if (Q.Ready)
             {

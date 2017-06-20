@@ -10,7 +10,6 @@ namespace DarkXerath
             if (E.Ready && myHero.ManaPercent >= myMenu.Get<MenuSlider>("hrMPE").CurrentValue && myMenu.Get<MenuCheckbox>("hrE").Checked)
             {
                 CastE(ETarget);
-                //return;
             }
 
             var WTarget = TSW.GetTarget(myHero, W.Data.Range, (x) => W.Data.GetDamage(x));

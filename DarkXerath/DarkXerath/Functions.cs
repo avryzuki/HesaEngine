@@ -8,8 +8,6 @@ namespace DarkXerath
 {
     internal partial class MyScript
     {
-        public static double humanizer = 0;
-
         static void UpdateValues()
         {
             if (QData.Active)
@@ -68,7 +66,7 @@ namespace DarkXerath
                     if (predPos != DarkPrediction.empt && myHero.Distance(predPos) <= Q.Data.Range && Game.GameTimeTickCount > humanizer)
                     {
                         myHero.Spellbook.UpdateChargedSpell(Q.Data.Slot, predPos, true);
-                        humanizer = Game.GameTimeTickCount + 100 + (Q.Data.Delay * 1000);
+                        humanizer = Game.Time + 0.2f + Q.Data.Delay;
                     }
                 }
             }
@@ -82,7 +80,7 @@ namespace DarkXerath
                 if (predPos != DarkPrediction.empt && predPos.Distance(myHero) <= W.Data.Range && Game.GameTimeTickCount > humanizer)
                 {
                     W.Data.Cast(predPos);
-                    humanizer = Game.GameTimeTickCount + 100 + (W.Data.Delay * 1000);
+                    humanizer = Game.Time + 0.2f + W.Data.Delay;
                 }
             }
         }
@@ -95,7 +93,7 @@ namespace DarkXerath
                 if (predPos != DarkPrediction.empt && !DarkPrediction.CollisionChecker(predPos, myHero.Position, E.Data) && predPos.Distance(myHero) <= E.Data.Range && Game.GameTimeTickCount > humanizer)
                 {
                     E.Data.Cast(predPos);
-                    humanizer = Game.GameTimeTickCount + 100 + (E.Data.Delay * 1000);
+                    humanizer = Game.Time + 0.2f + E.Data.Delay;
                 }
             }
         }

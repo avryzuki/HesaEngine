@@ -11,8 +11,10 @@ namespace DarkXerath
     {
         static Menu myMenu, AntiGCMenu, InterrupterMenu;
 
-        static int tick = Game.GameTimeTickCount;
+        //static int tick = Game.GameTimeTickCount;
         static int R2Range { get; set; }
+
+        static float humanizer { get; set; }
 
         static AIHeroClient myHero = ObjectManager.Player;
 

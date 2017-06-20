@@ -10,7 +10,7 @@ namespace DarkXerath
         public _TargetSelector(Menu subMenu, TargetSelector.DamageType damageType, Mode mode, bool includeShields = true)
         {
             menu = subMenu.AddSubMenu("Target Selector");
-            menu.DropDown("TSMode", "Targetting Mode", new string[] {"Auto Priority", "Lowest HP", "Most AD", "Most AP", "Closest", "Closest Mouse", "LessCast"}, (int) mode);
+            menu.DropDown("TSMode", "Targetting Mode", new string[] {"Auto Priority", "Lowest HP", "LessCast", "Most AD", "Most AP", "Closest", "Closest Mouse", "LessCast"}, (int) mode);
             menu.Boolean("selected", "Only Attack Selected Target");
             if (Enemies.Count == 0) menu.AddSeparator("- No Enemy Avaliable -");
             else
@@ -92,7 +92,7 @@ namespace DarkXerath
                     {
                         foreach (var enemy in list)
                         {
-                            if (result == null || (enemy.TotalAttackDamage > result.TotalAttackDamage))
+                            if (result == null || (enemy.APHealth() - damage(enemy) < result.APHealth() - damage(result)))
                                 result = enemy;
                         }
                         break;
@@ -101,7 +101,7 @@ namespace DarkXerath
                     {
                         foreach (var enemy in list)
                         {
-                            if (result == null || (enemy.BonusAbilityPower > result.BonusAbilityPower))
+                            if (result == null || (enemy.TotalAttackDamage > result.TotalAttackDamage))
                                 result = enemy;
                         }
                         break;
@@ -110,12 +110,21 @@ namespace DarkXerath
                     {
                         foreach (var enemy in list)
                         {
-                            if (result == null || (enemy.Distance3D(myHero) < result.Distance3D(myHero)))
+                            if (result == null || (enemy.BonusAbilityPower > result.BonusAbilityPower))
                                 result = enemy;
                         }
                         break;
                     }
                 case 5:
+                    {
+                        foreach (var enemy in list)
+                        {
+                            if (result == null || (enemy.Distance3D(myHero) < result.Distance3D(myHero)))
+                                result = enemy;
+                        }
+                        break;
+                    }
+                case 6:
                     {
                         foreach (var enemy in list)
                         {
@@ -181,11 +190,11 @@ namespace DarkXerath
         {
             AutoPriority,
             LowestHP,
+            LessCast,
             MostAD,
             MostAP,
             Cloest,
-            CloestMouse,
-            LessCast
+            CloestMouse
         }
 
         private static Dictionary<string, int> priority = new Dictionary<string, int>()
@@ -291,7 +300,7 @@ namespace DarkXerath
             { "Sivir",        4 },
             { "Skarner",      2 },
             { "Sona",         1 },
-            { "Soraka",       1 },
+            { "Soraka",       3 },
             { "Swain",        3 },
             { "Syndra",       4 },
             { "TahmKench",    2 },

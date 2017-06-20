@@ -17,10 +17,10 @@ namespace DarkXerath
                 }
             };
 
-            myMenu = Menu.AddMenu("DarkXerath");
+            myMenu = Menu.AddMenu("[DarkXerath] - Version " + MyLoader.ScriptVersion);
 
             var tmp = myMenu.AddSubMenu("Combo Mode");
-            AddSpells(tmp, "cb", new string[] { "Q", "W", "E" }, new bool[] { true, true, true }, new bool[] { true, true, true }, 3);
+            AddSpells(tmp, "cb", new string[] { "Q", "W", "E" }, new bool[] { true, true, true }, new bool[] { false, false, false }, 0);
             tmp.Boolean("cbWE", "Use Q if W or E is Ready");
 
             tmp = myMenu.AddSubMenu("Harass Mode");
