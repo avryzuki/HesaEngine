@@ -13,7 +13,7 @@ namespace DarkXerath
             }
 
             var ETarget = TSE.GetTarget(myHero, E.Data.Range, (x) => E.Data.GetDamage(x));
-            if (E.Ready&& myMenu.Get<MenuCheckbox>("cbE").Checked)
+            if (E.Ready && myMenu.Get<MenuCheckbox>("cbE").Checked)
             {
                 CastE(ETarget);
             }

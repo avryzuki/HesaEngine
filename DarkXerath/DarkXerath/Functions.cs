@@ -62,8 +62,8 @@ namespace DarkXerath
                 }
                 else
                 {
-                    var predPos = DarkPrediction.CirclerPrediction(Q.Data, (AIHeroClient)unit,1);
-                    if (predPos != DarkPrediction.empt && myHero.Distance(predPos) <= Q.Data.Range && Game.GameTimeTickCount > humanizer)
+                    var predPos = DarkPrediction.CirclerPrediction(Q.Data, (AIHeroClient)unit, 1);
+                    if (predPos != DarkPrediction.empt && myHero.Distance(predPos) <= Q.Data.Range && Game.Time > humanizer)
                     {
                         myHero.Spellbook.UpdateChargedSpell(Q.Data.Slot, predPos, true);
                         humanizer = Game.Time + 0.2f + Q.Data.Delay;
@@ -77,7 +77,7 @@ namespace DarkXerath
             if (unit != null)
             {
                 var predPos = DarkPrediction.CirclerPrediction(W.Data, (AIHeroClient)unit, 0);
-                if (predPos != DarkPrediction.empt && predPos.Distance(myHero) <= W.Data.Range && Game.GameTimeTickCount > humanizer)
+                if (predPos != DarkPrediction.empt && predPos.Distance(myHero) <= W.Data.Range && Game.Time > humanizer)
                 {
                     W.Data.Cast(predPos);
                     humanizer = Game.Time + 0.2f + W.Data.Delay;
@@ -90,7 +90,7 @@ namespace DarkXerath
             if (unit != null)
             {
                 var predPos = DarkPrediction.LinearPrediction(myHero.Position, E.Data, (AIHeroClient)unit);
-                if (predPos != DarkPrediction.empt && !DarkPrediction.CollisionChecker(predPos, myHero.Position, E.Data) && predPos.Distance(myHero) <= E.Data.Range && Game.GameTimeTickCount > humanizer)
+                if (predPos != DarkPrediction.empt && !DarkPrediction.CollisionChecker(predPos, myHero.Position, E.Data) && predPos.Distance(myHero) <= E.Data.Range && Game.Time > humanizer)
                 {
                     E.Data.Cast(predPos);
                     humanizer = Game.Time + 0.2f + E.Data.Delay;
