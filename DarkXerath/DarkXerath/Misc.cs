@@ -198,7 +198,7 @@ namespace DarkXerath
         {
             this.unit = unit;
             this.spell = spell;
-            end = spell.TimeCast + 1.25f;
+            end = spell.TimeCast + 2f;
         }
 
         public float end;

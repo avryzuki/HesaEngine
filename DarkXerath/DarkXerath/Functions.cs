@@ -12,7 +12,7 @@ namespace DarkXerath
         {
             if (QData.Active)
             {
-                Q.Data.Range = Math.Min(Q.Data.ChargedMaxRange, 700f + 500f * (Game.Time - QData.LastCastTime));
+                Q.Data.Range = Math.Min(Q.Data.ChargedMaxRange, 670f + 500f * (Game.Time - QData.LastCastTime));
             }
 
             if (R.Ready)
@@ -23,6 +23,11 @@ namespace DarkXerath
 
         static AIHeroClient GetRTarget(Vector3 Position, float range)
         {
+            if (myMenu.Get<MenuCheckbox>("RSelected").Checked)
+            {
+                var result = _TargetSelector.GetSelectedTarget(Position, range);
+                if (result != null) return result;
+            }
             AIHeroClient RTarget = null;
             float ratio = 0;
             foreach (var enemy in Enemies)

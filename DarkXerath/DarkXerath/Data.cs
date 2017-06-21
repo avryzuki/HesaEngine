@@ -1,6 +1,7 @@
 ﻿using System;
 using SharpDX;
 using HesaEngine.SDK;
+using SharpDX.Direct3D9;
 using HesaEngine.SDK.Enums;
 using HesaEngine.SDK.GameObjects;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace DarkXerath
     {
         static Menu myMenu, AntiGCMenu, InterrupterMenu;
 
-        //static int tick = Game.GameTimeTickCount;
+        static int RTextPosY = (int) Math.Ceiling(0.25 * Drawing.Height);
+
         static int R2Range { get; set; }
 
         static float humanizer { get; set; }
@@ -27,6 +29,14 @@ namespace DarkXerath
         static Spell Ignite = new Spell(myHero.GetSpellSlotFromName(SummonerSpells.Ignite), 600f);
 
         static _TargetSelector TSQ, TSW, TSE;
+
+        static Font RText = new Font(Drawing.Direct3DDevice, new FontDescription
+        {
+            Height = 30,
+            OutputPrecision = FontPrecision.TrueType,
+            FaceName = "Times New Roman",
+            Quality = FontQuality.ClearType
+        });
 
         internal static void LoadData()
         {

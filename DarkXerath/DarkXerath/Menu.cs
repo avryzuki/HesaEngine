@@ -56,6 +56,7 @@ namespace DarkXerath
             AntiChannel.AddMenu(InterrupterMenu);
 
             q = myMenu.AddSubMenu("Q Settings");
+            q.Slider("QExtend", "Extend Range", 0, 500, 100);
             w = myMenu.AddSubMenu("W Settings");
             e = myMenu.AddSubMenu("E Settings");
             r = myMenu.AddSubMenu("R Settings");
@@ -64,6 +65,7 @@ namespace DarkXerath
             r.Slider("R2", "R3 Cast Delays", 0, 1200, 270);
             r.Slider("R3", "R4 Cast Delays", 0, 1200, 290);
             r.Slider("R4", "R5 Cast Delays", 0, 1200, 310);
+            r.Boolean("RSelected", "Priority Selected Target");
 
             var draw = myMenu.AddSubMenu("Drawings");
             draw.Boolean("drawQMin", "Draw Q Current Range", true);

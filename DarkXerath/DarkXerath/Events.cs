@@ -19,10 +19,6 @@ namespace DarkXerath
 
         static void OnTick()
         {
-            //int TickCount = Game.GameTimeTickCount;
-            //if (TickCount - tick < 250) return;
-            //tick = TickCount;
-
             UpdateValues();
 
             if (CastCheck.ShouldCast)
@@ -125,13 +121,13 @@ namespace DarkXerath
         static void OnAntiGapcloserActive(AIHeroClient unit, GameObjectProcessSpellCastEventArgs spell)
         {
             if (E.Ready && AntiGC.MenuCheck(AntiGCMenu, spell) && unit.IsValidTarget(E.Data.Range))
-                CastE(unit);
+                E.Cast(unit, false);
         }
 
         static void OnAntiChannelActive(AIHeroClient unit, GameObjectProcessSpellCastEventArgs spell)
         {
             if (E.Ready && AntiGC.MenuCheck(InterrupterMenu, spell) && unit.IsValidTarget(E.Data.Range))
-                CastE(unit);
+                E.Cast(unit, false);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using SharpDX;
 using HesaEngine.SDK;
 using HesaEngine.SDK.GameObjects;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace DarkXerath
         {
             menu = subMenu.AddSubMenu("Target Selector");
             menu.DropDown("TSMode", "Targetting Mode", new string[] {"Auto Priority", "Lowest HP", "LessCast", "Most AD", "Most AP", "Closest", "Closest Mouse", "LessCast"}, (int) mode);
-            menu.Boolean("selected", "Only Attack Selected Target");
+            menu.Boolean("selected", "Priority Selected Target");
             if (Enemies.Count == 0) menu.AddSeparator("- No Enemy Avaliable -");
             else
             {
@@ -62,11 +63,15 @@ namespace DarkXerath
             }
         }
 
-        public AIHeroClient GetTarget(AIHeroClient myHero, float Range, Func<AIHeroClient, float> damage = null)
+        public AIHeroClient GetTarget(Vector3 Position, float Range, Func<AIHeroClient, float> damage = null)
         {
             var list = Enemies.FindAll((x) => x.IsValidTarget(Range) && IsValid(x));
             AIHeroClient result = null;
-            if (menu.Get<MenuCheckbox>("selected").Checked && TargetSelector.GetSelectedTarget() != null) return TargetSelector.GetSelectedTarget();
+            if (menu.Get<MenuCheckbox>("selected").Checked)
+            {
+                var ts = GetSelectedTarget(Position, Range);
+                if (ts != null) return ts;
+            }
 
             switch (menu.Get<MenuCombo>("TSMode").CurrentValue)
             {
@@ -119,7 +124,7 @@ namespace DarkXerath
                     {
                         foreach (var enemy in list)
                         {
-                            if (result == null || (enemy.Distance3D(myHero) < result.Distance3D(myHero)))
+                            if (result == null || (enemy.Distance(Position) < result.Distance(Position)))
                                 result = enemy;
                         }
                         break;
@@ -138,6 +143,13 @@ namespace DarkXerath
             }
 
             return result;
+        }
+
+        public static AIHeroClient GetSelectedTarget(Vector3 Position, float Range)
+        {
+            var target = TargetSelector.GetSelectedTarget();
+            if (target != null && !target.IsDead && target.Distance(Position) <= Range) return target;
+            return null;
         }
 
         public static int GetPriority(AIHeroClient unit)

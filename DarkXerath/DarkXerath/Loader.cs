@@ -36,7 +36,7 @@ namespace DarkXerath
 
         internal static string ScriptVersion
         {
-            get { return "1.0.2"; }
+            get { return "1.0.3"; }
         }
 
         internal static void PrintChat(string text) { Chat.Print(String.Format("<font color=\"#4169E1\"><b>[DarkXerath]:</b></font><font color=\"#FFFFFF\"> {0}</font>", text)); }

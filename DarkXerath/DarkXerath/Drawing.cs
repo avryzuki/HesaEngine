@@ -1,4 +1,5 @@
-﻿using SharpDX;
+﻿using System;
+using SharpDX;
 using HesaEngine.SDK;
 
 namespace DarkXerath
@@ -8,12 +9,6 @@ namespace DarkXerath
         static void Drawings()
         {
             Vector3 Position = myHero.Position;
-            /*var enemyq = TargetSelector.GetTarget(1500, TargetSelector.DamageType.Magical);
-
-            if (enemyq != null)
-            {
-                Drawing.DrawCircle(DarkPrediction.CirclerPrediction(Q.Data, enemyq, 1), 50, Color.Pink);
-            }*/
 
             if (Q.Ready)
             {
@@ -41,13 +36,18 @@ namespace DarkXerath
 
             if (R.Ready && myMenu.Get<MenuCheckbox>("drawRText").Checked)
             {
-                int tmp = 0;
+                int tmp = -40;
                 foreach (var enemy in Enemies)
                 {
-                    if (enemy.IsValidTarget(R.Data.Range) && R.Data.GetDamage(enemy) * RData.Count > enemy.APHealth())
+                    if (enemy.IsValidTarget(R.Data.Range))
                     {
-                        tmp += 15;
-                        Drawing.DrawText(enemy.ChampionName + " Killable", 0f, Drawing.Height / 4f + tmp, Color.Red);
+                        int shot = (int) Math.Ceiling(enemy.APHealth() / R.Data.GetDamage(enemy));
+                        string str = shot > 1 ? "Shots" : "Shot";
+                        if (shot <= RData.Count)
+                        {
+                            tmp += 40;
+                            RText.DrawText(null, enemy.ChampionName + " - " + shot.ToString() + " " + str, 0, tmp + RTextPosY, Color.Red);
+                        }
                     }
                 }
             }
