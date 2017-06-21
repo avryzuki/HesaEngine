@@ -199,7 +199,7 @@ namespace DarkXerath
                                 break;
                             }
                         }
-                        t = t + (spell.Delay * 1000) + (Game.Ping / 1);
+                        t = t + (spell.Delay * 1000) + Game.Ping;
                         Vector3 EFuture = enemy.Position + (direction * (ES / 1000) * t);
                         Vector3 fut = EFuture.Extend(enemy.Position, (spell.Width - 30));
                         return fut;
@@ -345,7 +345,7 @@ namespace DarkXerath
                         {
                             Vector3 direction = (eposC[eposC.Count - 1] - eposC[eposC.Count - 2]).Normalized();
 
-                            Vector3 EFuture = enemy.Position + direction * (ES / 1000) * (spell.Delay * 1000) + (Game.Ping / 1);
+                            Vector3 EFuture = enemy.Position + direction * (ES / 1000) * (spell.Delay * 1000) + Game.Ping;
                             Vector3 fut = EFuture.Extend(enemy.Position, (spell.Width - 30));
                             return fut;
                         }
